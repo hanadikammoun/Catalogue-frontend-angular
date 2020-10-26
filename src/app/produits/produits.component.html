@@ -1,0 +1,66 @@
+<div class="container margin">
+    <form  #f="ngForm" (ngSubmit)="onSerach(f.value)">
+      <div>
+        <input  placeholder="Chercher..." type="text" name="Keyword" ngModel>
+        <button style="margin-left: 5px;" type="submit" class="btn btn-primary">
+          <span class="glyphicon glyphicon-search"></span>
+
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <button  routerLink="/new-product" style="margin-left: 10px"  class="btn btn-primary" >
+        <span class="glyphicon glyphicon-plus"></span> Ajouter Nouveau Produit</button>
+    </div>
+  <div class="col-md-8" >
+  <div class="panel panel-default">
+    <div class="panel-heading">Liste des produits</div>
+
+    <div class="panel-body">
+
+      <div class="row" *ngIf="produits">
+        <div *ngFor="let p of produits._embedded.produits">
+          <div class="col-md-6">
+            <div class="panel panel-default ">
+              <div class="panel-heading">{{p.designation}}</div>
+
+              <div class="panel-body" >
+                <div class="row">
+                  <div class="col-md-6">
+                    <ul class="list-group">
+                      <li class="list-group-item"><b>Détailles Article:</b></li>
+                      <li class="list-group-item clickable"> Prix:{{p.price|number:'0.2'}}</li>
+                      <li class="list-group-item clickable"> Quantité:{{p.quantite}}</li>
+                    </ul>
+                  </div>
+                  <div  class="col-md-8">
+                    <button    type="button" class="btn btn-success" (click)="onEditProduct(p)">
+                      <span class="glyphicon glyphicon-edit"></span>
+                      Edit</button>
+                    <button style="margin-left: 10px"  class="btn btn-danger" (click)="onDeleteProduct(p)">
+                      <span class="glyphicon glyphicon-remove-sign"></span> Delete</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul *ngIf="pages" class="nav nav-pills">
+        <li  class="clickable" [ngClass]="i==this.currentPage?'active':''" *ngFor="let p of pages; let i=index" >
+          <a (click)="onPageProduct(i)">{{i}}</a>
+
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+</div>
+
+</div>
+</div>
