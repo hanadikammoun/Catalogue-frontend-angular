@@ -10,32 +10,41 @@ import {FormGroup} from "@angular/forms";
 export class CatalogueService {
  public host:string="http://localhost:8080"
 
+  public dataForm:  FormGroup;
 
-
-  constructor(private hhtpClient:HttpClient) {
+  constructor(public httpClient:HttpClient) {
   }
+
+
 
   public getProduit(page:number,size:number){
-    return this.hhtpClient.get(this.host+"/produits?page="+page+"&size="+size);
+    return this.httpClient.get(this.host+"/produits?page="+page+"&size="+size);
   }
   public geproductByKey(des:string,page:number,size:number){
-    return this.hhtpClient.get(this.host+"/produits/search/byDesignationPage?des="+des+"&page="+page+"&size="+size);
+    return this.httpClient.get(this.host+"/produits/search/byDesignationPage?des="+des+"&page="+page+"&size="+size);
   }
   public delete(url){
-    return this.hhtpClient.delete(url);
+    return this.httpClient.delete(url);
   }
   public saveData (url,data):Observable<Product>{
-    return this.hhtpClient.post<Product>(url,data);
+    return this.httpClient.post<Product>(url,data);
 
   }
   public getData (url):Observable<Product>{
-    return this.hhtpClient.get<Product>(url);
+    return this.httpClient.get<Product>(url);
 
   }
   public updateData (url,data):Observable<Product>{
-    return this.hhtpClient.put<Product>(url,data);
+    return this.httpClient.put<Product>(url,data);
 
   }
 
 
+  createData(data: any): Observable<any> {
+    return this.httpClient.post(`${this.host+"/produitsCatalogue"}`, data);
+  }
+
+  updatedataWithImage(id: number, value: any) {
+    return this.httpClient.put(`${this.host+"/updateCatalogue"}/${id}`, value);
+  }
 }

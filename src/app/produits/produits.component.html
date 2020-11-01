@@ -23,21 +23,19 @@
 
       <div class="row" *ngIf="produits">
         <div *ngFor="let p of produits._embedded.produits">
+
           <div class="col-md-6">
             <div class="panel panel-default ">
               <div class="panel-heading">{{p.designation}}</div>
 
               <div class="panel-body" >
                 <div class="row">
-                  <div class="col-md-6">
-                    <ul class="list-group">
-                      <li class="list-group-item"><b>Détailles Article:</b></li>
-                      <li class="list-group-item clickable"> Prix:{{p.price|number:'0.2'}}</li>
-                      <li class="list-group-item clickable"> Quantité:{{p.quantite}}</li>
-                    </ul>
+                  <div class="col-md-8">
+                    <img (click)="onProductDetails(p)"src="{{catalogueService.host+'/imageProduit/'+p.id}}" width="350" height="220"/>
                   </div>
-                  <div  class="col-md-8">
-                    <button    type="button" class="btn btn-success" (click)="onEditProduct(p)">
+
+                  <div  class="col-md-6">
+                    <button   type="button" class="btn btn-success" (click)="onEditProduct(p)">
                       <span class="glyphicon glyphicon-edit"></span>
                       Edit</button>
                     <button style="margin-left: 10px"  class="btn btn-danger" (click)="onDeleteProduct(p)">

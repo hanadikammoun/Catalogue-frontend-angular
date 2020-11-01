@@ -17,7 +17,7 @@ export class ProduitsComponent implements OnInit {
 
  public pages:Array<number>;
   private currentKeyword: string;
-  constructor(private catalogueService:CatalogueService,private router:Router) { }
+  constructor(public catalogueService:CatalogueService,private router:Router) { }
 
   ngOnInit(): void {
     this.catalogueService.getProduit(this.currentPage,this.size)
@@ -92,4 +92,8 @@ export class ProduitsComponent implements OnInit {
   }
 
 
+  onProductDetails(p: any) {
+    let url=p._links.self.href
+    this.router.navigateByUrl("/detail-product/"+btoa(url));
+  }
 }

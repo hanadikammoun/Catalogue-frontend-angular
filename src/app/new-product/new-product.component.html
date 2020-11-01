@@ -2,44 +2,36 @@
 <div class="col-md-9 col-sm-6 col-xs-12 ">
 <div class ="panel panel-default">
   <div class="panel-heading"><b> Nouveau Produit </b> </div>
-  <div class="panel-body" *ngIf="mode==1">
-    <form #f="ngForm" (ngSubmit)="onSaveProduct(f.value)">
+  <div class="panel-body">
+    <form  [formGroup]="this.catalogueService.dataForm" (ngSubmit)=" addData()">
       <div class="form-group">
         <label class="control-label">Désignation :</label>
-        <input class="form-control" type="text" name="designation" ngModel>
+        <input class="form-control" type="text" formControlName="designation" >
       </div>
       <div class="form-group">
         <label class="control-label">Quantité :</label>
-        <input class="form-control" type="number" name="quantite" ngModel>
+        <input class="form-control" type="number" formControlName="quantite" >
       </div>
       <div class="form-group">
         <label class="control-label">Prix :</label>
-        <input class="form-control" type="text" name="price" ngModel>
+        <input class="form-control" type="text" formControlName="price" >
+      </div>
+      <div class="form-group">
+        <label class="control-label">Caractéristique technique :</label>
+        <input class="form-control" type="text" formControlName="descriptionTech" >
       </div>
 
+      <div class="form-group">
+        <label>File Upload  </label>
+        <input type="file" accept="image/*" (change)="onSelectFile($event)">
+        <img [src]="imgURL" height="200" *ngIf="imgURL">
+      </div>
       <button class="btn btn-success" type="submit"> Save</button>
     </form>
-    </div>
-  <div class="panel-body" *ngIf="mode==2">
-    <button  style="margin: 20px" class=" btn btn-success" type="submit" (click)="OnAdd()"> Nouveau Produit</button>
-    <div class="form-group">
-      <label>ID:</label>
-      <label>{{cuurentProduct.id}}</label>
-    </div>
-    <div class="form-group">
-      <label>Desigantion:</label>
-      <label>{{cuurentProduct.designation}}</label>
-    </div>
-    <div class="form-group">
-      <label>Prix:</label>
-      <label>{{cuurentProduct.price}}</label>
-    </div>
-    <div class="form-group">
-      <label>Quantite:</label>
-      <label>{{cuurentProduct.quantite}}</label>
+
+
     </div>
 
-  </div>
   </div>
 </div>
 </div>

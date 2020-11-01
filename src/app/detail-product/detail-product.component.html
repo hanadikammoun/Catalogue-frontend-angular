@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9" >
+      <div class="panel panel-default ">
+        <div class="panel-heading"> Détailles de produits</div>
+  <div class="panel-body" *ngIf="cuurentProduct" >
+    <div class="row">
+      <div class="col-md-5">
+        <img src="{{catalogueService.host+'/imageProduit/'+cuurentProduct.id}}" width="250" height="220"/>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-group">
+
+          <li class="list-group-item clickable"><b> Designation: </b>{{cuurentProduct.designation}}</li>
+          <li class="list-group-item clickable"> <b> Prix: </b>{{cuurentProduct.price|number:'0.2'}}</li>
+          <li class="list-group-item clickable"><b> Quantité: </b>{{cuurentProduct.quantite}}</li>
+          <li class="list-group-item clickable"><b> caractéristique technique: </b>{{cuurentProduct.descriptionTech}}</li>
+        </ul>
+      </div>
+
+</div>
+</div>
+  </div>
+  </div>
+</div>
+</div>

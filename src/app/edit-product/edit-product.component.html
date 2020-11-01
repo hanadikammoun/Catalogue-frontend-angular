@@ -2,7 +2,7 @@
   <div class="panel panel-default">
     <div class="panel-heading"> Edition de produit</div>
     <div class="panel-body" *ngIf="currentData">
-      <form #f="ngForm" (ngSubmit)="onUpdateProduct(f.value)">
+      <form #f="ngForm" (ngSubmit)="updateData(currentData.id,f.value)">
         <div class="form-group">
           <label class="control-label">Désignation :</label>
           <input class="form-control" type="text" name="designation" ngModel [(ngModel)]="currentData.designation">
@@ -14,6 +14,10 @@
         <div class="form-group">
           <label class="control-label">Prix :</label>
           <input class="form-control" type="text" name="price" ngModel [(ngModel)]="currentData.price">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Caractéristique technique :</label>
+          <input class="form-control" type="text" name="descriptionTech" ngModel [(ngModel)]="currentData.descriptionTech">
         </div>
         <button class="btn btn-success" type="submit"> Update</button>
       </form>

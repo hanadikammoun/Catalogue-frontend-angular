@@ -3,4 +3,6 @@ export class Product{
   public designation:string;
   public price :number;
   public quantite: number;
+  public descriptionTech:string;
+
 }

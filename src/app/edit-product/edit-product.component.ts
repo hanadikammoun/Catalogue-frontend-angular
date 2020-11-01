@@ -12,26 +12,40 @@ export class EditProductComponent implements OnInit {
   public currentData: Product;
   private url: string;
 
-  constructor(private router:Router, private activatedRoute:ActivatedRoute,private catalogueService:CatalogueService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private catalogueService: CatalogueService) {
+  }
 
   ngOnInit(): void {
-    this.url=atob(this.activatedRoute.snapshot.params.id)
+    // activateRoot to get id product (current data)
+    this.url = atob(this.activatedRoute.snapshot.params.id)
     this.catalogueService.getData(this.url)
-      .subscribe(data=>{
-        this.currentData=data;
-      },err=> {
+      .subscribe(data => {
+        this.currentData = data;
+      }, err => {
         console.log(err);
       })
   }
-
+//update producte without image (en utilisant l'url active)
   onUpdateProduct(value: any) {
-    this.catalogueService.updateData(this.url,value)
-      .subscribe(data=>{
+    this.catalogueService.updateData(this.url, value)
+      .subscribe(data => {
         alert("Product mis a jours avec sucees")
         this.router.navigateByUrl("/product")
-      },error => {
+      }, error => {
         console.log(error);
       })
 
+  }
+//update product with image
+  updateData(id: number, data: any) {
+    {
+      this.catalogueService.updatedataWithImage(id, data)
+        .subscribe(data => {
+          alert("Product mis a jours avec sucees")
+          this.router.navigate(['/product']);
+        }, error => {
+          console.log(error);
+        });
+    }
   }
 }
